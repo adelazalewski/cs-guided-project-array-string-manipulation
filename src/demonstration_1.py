@@ -20,6 +20,35 @@ Output: -1
 Explanation:
 There is no index that satisfies the conditions in the problem statement.
 """
-def pivot_index(nums):
+def pivot_index(nums): # == 2*O(n) = O(n)
     # Your code here
+    curr = 0
+    l_sum = 0
+    r_sum = sum(nums) #O(n)
+    for i in range(len(nums)): #O(n)
+        # l_sum = sum(nums[0:i])   #all in the loop is O(n)
+        # r_sum = sum(nums[i +1:])
+        #remove current value from r_sum
+        r_sum -= nums[i]
+        if i != 0:
+            l_sum += nums[i-1]
+        if l_sum == r_sum:
+            return i
+    return -1
 
+print(pivot_index(nums = [1,7,3,6,5,6]))
+print(pivot_index(nums = [1,2,3]))
+
+#UPEr
+# input array of nums
+# output = iondex, num
+# return -1 if no pivot_index
+# return retunr the left most pivot
+# plan:
+# array search - for loop
+# looking for value that meets the cryteria - check if pivot index
+# #sum all nums on left
+# #sum all nums on right of pivot
+# #if l == r
+# return index 
+# if not return -1
